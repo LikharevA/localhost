@@ -22,15 +22,31 @@
   <div><h2>Первая вкладка.</h2> 
   <p> 
   <form  method="post">
-  <p>Фильм: &nbsp;<input type="text" name="name"><br>
-     Жанр: &nbsp;<input type="text" name="genre"><br>
+  <p>Фамилия: &nbsp;<input type="text" name="f_name"><br>
+     Имя: &nbsp;<input type="text" name="l_name"><br>
+	 Пол: &nbsp;<input type="text" name="gender"><br>
+	 Отель:  &nbsp;<input type="text" name="hotel"><br>
      Описание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
      Время: &nbsp;<input type="text" name="time"><br>
      Цена билета: &nbsp;<input type="Text" name="price"><br>
      Зал: &nbsp;<input type="text" name="room"><br>
   <input type="submit" name="ok" value="Внести запись"></p>
 </form>
- 
+ <?
+ if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(trim($_POST['name']) and trim($_POST['genre']) and trim($_POST['info']) and trim($_POST['time']) and trim($_POST['price']) and trim($_POST['room'])){
+        $name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['name']))));
+        $genre=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['genre']))));
+        $info=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['info']))));
+        $time=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['time']))));
+        $price=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['price']))));
+        $room=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['room']))));
+        $query = "INSERT INTO `repertoire` (`name`, `genre`, `info`, `time`, `price`, `room`) 
+         VALUES ( '$name', '$genre', '$info', '$time', '$price', '$room')";
+        mysql_query($query);
+    }
+}
+?>
   </p> 
   
   </div> 
