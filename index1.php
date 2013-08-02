@@ -50,6 +50,18 @@
 </li>
 </ul>
 
+  <form  method="post">
+  <p>Фамилия: &nbsp;<input type="text" name="f_name"><br>
+     Имя: &nbsp;<input type="text" name="l_name"><br>
+	 Пол: &nbsp;<input type="text" name="gender"><br>
+	 Отель:  &nbsp;<input type="text" name="hotel"><br>
+     Описание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
+     Время: &nbsp;<input type="text" name="time"><br>
+     Цена билета: &nbsp;<input type="Text" name="price"><br>
+     Зал: &nbsp;<input type="text" name="room"><br>
+  <input type="submit" name="ok" value="Внести запись"></p>
+</form>
+
 <ul class="ul">
 <li><label for="inptext1">Фамилия:</label></li>
 <li><input type="text" id="inptext1" size="12" name="inptext1" maxlength="10" /></li>
