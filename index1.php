@@ -132,11 +132,6 @@ $result = mysql_query($query) or die("Запрос ошибочный");
 
 
 
-
-
-
-
-
 <script type="text/javascript">
 	//<![CDATA[
 		function f_createCalendars(n_number) {
@@ -166,7 +161,7 @@ $result = mysql_query($query) or die("Запрос ошибочный");
 	
 <!--Конец календарика -->
 	<body> 
-	<!--Конец календарика  <input type="text" name="date" class="datepicker" /> --> 
+<!--Конец календарика  <input type="text" name="date" class="datepicker" /> --> 
 <? 
   echo "<br />";
   $mysqli = new mysqli("localhost", "root", "", "ex_bd");
@@ -186,7 +181,6 @@ echo $row['data_start']."      <hr>\n";
 ?>
 
 <!--поиск -->
-
 <form action="index1.php" method="post">
 
 Регион<br>
