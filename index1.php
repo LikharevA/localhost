@@ -50,8 +50,10 @@
 </li>
 </ul>
 
-  <form  method="post">
-  <p>Фамилия: &nbsp;<input type="text" name="f_name"><br>
+<ul class="ul">
+
+ <form  method="post">
+  <li>Фамилия:</li> &nbsp;<input type="text" name="f_name"><br>
      Имя: &nbsp;<input type="text" name="l_name"><br>
 	 Пол: &nbsp;<input type="text" name="gender"><br>
 	 Отель:  &nbsp;<input type="text" name="hotel"><br>
@@ -59,8 +61,14 @@
      Время: &nbsp;<input type="text" name="time"><br>
      Цена билета: &nbsp;<input type="Text" name="price"><br>
      Зал: &nbsp;<input type="text" name="room"><br>
-  <input type="submit" name="ok" value="Внести запись"></p>
+  <input type="submit" name="ok" value="Внести запись"></li>
 </form>
+</ul>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.ul').jqf1();
+});
+</script>
 
 <ul class="ul">
 <li><label for="inptext1">Фамилия:</label></li>
