@@ -144,7 +144,11 @@ mysql_select_db("ex_bd") or die("Не найдена БД");
 
 /* Выполнение SQL запроса */
 
-$query = "INSERT INTO ex_bd.usert(`f_name`) VALUES ('inptext1')";
+/*$query = "INSERT INTO ex_bd.usert(`f_name`) VALUES ('inptext1')";*/ 
+
+/* добавляет запись */
+
+     
 $result = mysql_query($query) or die("Запрос ошибочный");
 
 

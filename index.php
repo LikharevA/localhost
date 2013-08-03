@@ -14,7 +14,7 @@ echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://
 <a href=\"index1.php\">Щелкните тут</a>
 <a href=\"index2.php\">Щелкните тут</a>
 <a href=\"index3.html\">Щелкните тут</a>
-<a href=\"index5.html\">Щелкните тут</a>
+<a href=\"index5.php\">Щелкните тут</a>
 </center>
 </body>
 </html>";

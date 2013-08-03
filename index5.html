@@ -55,7 +55,8 @@
   <div class="les"><h2>Вторая вкладка.</h2> 
   <p> 
 
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+<?php
+  $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
  
 if ($action == 'postResult')
 {
@@ -64,7 +65,7 @@ $data2selected = $_POST['data2'];
 $data8text = $_POST['data8'];
  
  
-    echo '<b>Данные с формы следующие:</b><br>';
+    echo "<b>Данные с формы следующие:</b>";
     if ($data1selected!='')
     {   
     echo '<br>Поле data1: '.$data1selected;
