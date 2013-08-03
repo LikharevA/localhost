@@ -26,11 +26,11 @@
      Имя: &nbsp;<input type="text" name="l_name"><br>
 	 Пол: &nbsp;<input type="text" name="gender"><br>
 	 Отель:  &nbsp;<input type="text" name="hotel"><br>
-     Описание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
 	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
      Время: &nbsp;<input type="text" name="time"><br>
      Стоимость: &nbsp;<input type="Text" name="price"><br>
-     Зал: &nbsp;<input type="text" name="room"><br>
+     Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
+	 Зал: &nbsp;<input type="text" name="room"><br>
   <input type="submit" name="ok" value="Внести запись"></p>
 </form>
  <?
@@ -54,7 +54,71 @@
   
   <div class="les"><h2>Вторая вкладка.</h2> 
   <p> 
-  Содержимое второй вкладки.
+
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+ 
+if ($action == 'postResult')
+{
+$data1selected = $_POST['data1'];
+$data2selected = $_POST['data2'];
+$data8text = $_POST['data8'];
+ 
+ 
+    echo '<b>Данные с формы следующие:</b><br>';
+    if ($data1selected!='')
+    {   
+    echo '<br>Поле data1: '.$data1selected;
+    }
+    else
+    {echo '<br>Поле data1 пустое!';}
+ 
+    if ($data2selected!='')
+    {   
+    
+    echo '<br>Поле data2: '.$data2selected;
+    }
+    else
+    {echo '<br>Поле data1 пустое!';}
+ 
+
+    if ($data8text!='')
+    {   
+    
+    echo '<br>Поле data8: '.$data8text;
+    }
+    else
+    {echo '<br>Поле data8 пустое.';}    
+ 
+    $htmlcode = <<<HERE
+Нажмите кнопку 'Подтвердить запрос'.<br>
+<input name='sendok1' type='submit' value='Подтвердить запрос'  onclick='infor.style.display="block"' />
+<div style='display:none;' id='infor'>Информация о запросе сохранена в базе данных.</div>
+HERE;
+    
+echo "<br><br>".$htmlcode;
+    exit;
+}
+
+<html>
+
+
+<form action="index.php" method="post">
+    
+ <b>Данные запроса</b><br>
+Дата1:      <select name="data1">
+ <option>1</option>
+  <option>2</option></select>
+  <br>
+  Дата2:        <select name="data2">
+ <option>1</option>
+  <option>2</option></select>
+  <br>
+  
+ 
+<br><label for="data8">Дата8:</label> <input id="data8" name="data8" type = "text" > <br>
+  <input type="hidden" name="action" value="postResult" />
+       <br> <br><input name="sendzapros" type="submit" value="отправить">
+    </form>
   </p> 
   
   </div> 
@@ -91,5 +155,9 @@ $(function() {
 	$("ul.tabs").tabs("div.panes > div");
 });
 </script> 
+
+
+ 
+
 </body>
 </html>
