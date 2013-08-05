@@ -46,24 +46,30 @@
 	 Пол: &nbsp;<input type="text" name="gender"><br>
 	 Отель:  &nbsp;<input type="text" name="hotel"><br>
 	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
-     Время: &nbsp;<input type="text" name="time"><br>
+     Время: &nbsp;<input type="text" name="datesale"><br>
      Стоимость: &nbsp;<input type="Text" name="price"><br>
      Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
-	 Зал: &nbsp;<input type="text" name="room"><br>
   <input type="submit" name="ok" value="Внести запись"></p>
 </form>
  <?
+$link = mysql_connect("localhost", "root", "") or die("Не соединилось!!!");
+/* Соединение, выбор БД  добавляет записи*/
+/* mysql_select_db("ex_bd") or die("Не найдена БД");
+Выполнение SQL запроса */
+/*$query = "INSERT INTO ex_bd.usert(`f_name`) VALUES ('inptext1')";*/ 
+/* добавляет запись */
+/*$result = mysql_query($query) or die("Запрос ошибочный");0*/
  if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(trim($_POST['f_name']) and trim($_POST['l_name']) and trim($_POST['gender']) and trim($_POST['time']) and trim($_POST['price']) and trim($_POST['numroom'])){
-        $name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['name']))));
-        $genre=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['genre']))));
-        $info=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['info']))));
-        $time=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['time']))));
+    if(trim($_POST['f_name']) and trim($_POST['l_name']) and trim($_POST['gender']) and trim($_POST['datesale']) and trim($_POST['price']) and trim($_POST['numroom']))
+	{
+        $f_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['f_name']))));
+        $l_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['l_name']))));
+        $gender=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['gender']))));
+        $datesale=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['datesale']))));
         $price=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['price']))));
-        $room=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['room']))));
-        $query = "INSERT INTO `repertoire` (`name`, `genre`, `info`, `time`, `price`, `room`) 
-         VALUES ( '$name', '$genre', '$info', '$time', '$price', '$room')";
-        mysql_query($query);
+        $numroom=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['numroom']))));
+        $query = "INSERT INTO ex_bd.usert (`f_name`, `l_name`, `gender`, `datesale`, `price`, `numroom`) VALUES ('$f_name', '$l_name', '$gender', '$datesale', '$price', '$numroom')";
+		$result = mysql_query($query) or die ("Запрос ошибочный");
     }
 }
 ?>
