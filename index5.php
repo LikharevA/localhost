@@ -56,26 +56,7 @@
      Время: &nbsp;<input type="text" name="datesale"><br>
      Стоимость: &nbsp;<input type="Text" name="price"><br>
 	 Экскурсия: &nbsp;<input type="Text" name="id_ex"><br>
-	<? 
-$hostname = "localhost"; // название/путь сервера, с MySQL
-$username = "root"; // имя пользователя (в Denwer`е по умолчанию "root")
-$password = ""; // пароль пользователя (в Denwer`е по умолчанию пароль отсутствует, этот параметр можно оставить пустым)
-$dbName = "ex_bd";
-$sotr = $mysqli->query("SELECT * FROM ex_bd.excurtion_ed");
-if ($sotr == true) 
-{
-     echo '<select>';
-     while ($s = mysql_fetch_array($sotr)) 
-	 {
-          echo '<option>'.$s['name'].'</option>';
-     }
-    echo '</select>';
-}
-else 
-{
-    echo 'Сотрудники отсутствуют';
-}
-?>
+	
 	 
      Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
   <input type="submit" name="ok" value="Внести запись"></p>

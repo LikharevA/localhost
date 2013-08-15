@@ -4,10 +4,10 @@
 $hostname = "localhost"; // название/путь сервера, с MySQL
 $username = "root"; // им€ пользовател€ (в Denwer`е по умолчанию "root")
 $password = ""; // пароль пользовател€ (в Denwer`е по умолчанию пароль отсутствует, этот параметр можно оставить пустым)
-$dbName = "test_base"; // название базы данных
+$dbName = "ex_bd"; // название базы данных
  
 /* “аблица MySQL, в которой хран€тс€ данные */
-$table = "test_table";
+$table = "usert";
  
 /* —оздаем соединение */
 mysql_connect($hostname, $username, $password) or die ("Ќе могу создать соединение");
@@ -16,8 +16,9 @@ mysql_connect($hostname, $username, $password) or die ("Ќе могу создать соединен
 mysql_select_db($dbName) or die (mysql_error());
  
 /* —оставл€ем запрос дл€ извлечени€ данных из полей "name", "email", "theme",
+f_name, l_name, gender, price, numroom, hotel, datesale;
 "message", "data" таблицы "test_table" */
-$query = "SELECT id, name, email, theme, message, data FROM $table";
+$query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale FROM $table";
  
 /* ¬ыполн€ем запрос. ≈сли произойдет ошибка - вывести ее. */
 $res = mysql_query($query) or die(mysql_error());
@@ -59,16 +60,17 @@ td { padding: 3px; text-align: center; vertical-align: middle; }
   <td align=\"center\"><b>—ообщени€ пользователей</b></td>
  </tr>
 ");
- 
+
 /* ÷икл вывода данных из базы конкретных полей */
 while ($row = mysql_fetch_array($res)) {
     echo "<tr>\n";
-    echo "<td>".$row['id']."</td>\n";
-    echo "<td>".$row['data']."</td>\n";
-    echo "<td>".$row['name']."</td>\n";
-    echo "<td>".$row['email']."</td>\n";
-    echo "<td>".$row['theme']."</td>\n";
-    echo "<td>".$row['message']."</td>\n</tr>\n";
+    echo "<td>".$row['f_name']."</td>\n";
+    echo "<td>".$row['l_name']."</td>\n";
+    echo "<td>".$row['gender']."</td>\n";
+    echo "<td>".$row['hotel']."</td>\n";
+	echo "<td>".$row['numroom']."</td>\n";
+    echo "<td>".$row['datesale']."</td>\n";
+    echo "<td>".$row['price']."</td>\n</tr>\n";
 }
  
 echo ("</table>\n");
