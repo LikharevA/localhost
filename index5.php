@@ -39,15 +39,44 @@
   <div class="panes"> 
   <div><h2>Первая вкладка.</h2> 
   <p> 
-  <form  method="post">
+  <form action="save_form.php" method="post" name="test_form">
   <p>
      Фамилия: &nbsp;<input type="text" name="f_name"><br>
      Имя: &nbsp;<input type="text" name="l_name"><br>
-	 Пол: &nbsp;<input type="text" name="gender"><br>
-	 Отель:  &nbsp;<input type="text" name="hotel"><br>
+	 Пол: <select name="gender">
+           <option>m</option>
+           <option>f</option></select><br>
+	 <!-- Отель:  &nbsp;<input type="text" name="hotel"><br> -->
+	 
+     Отель: <select name="hotel">
+           <option>Zine</option>
+           <option>Juke</option></select>
+                                          <br>
 	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
      Время: &nbsp;<input type="text" name="datesale"><br>
      Стоимость: &nbsp;<input type="Text" name="price"><br>
+	 Экскурсия: &nbsp;<input type="Text" name="id_ex"><br>
+	<? 
+$hostname = "localhost"; // название/путь сервера, с MySQL
+$username = "root"; // имя пользователя (в Denwer`е по умолчанию "root")
+$password = ""; // пароль пользователя (в Denwer`е по умолчанию пароль отсутствует, этот параметр можно оставить пустым)
+$dbName = "ex_bd";
+$sotr = $mysqli->query("SELECT * FROM ex_bd.excurtion_ed");
+if ($sotr == true) 
+{
+     echo '<select>';
+     while ($s = mysql_fetch_array($sotr)) 
+	 {
+          echo '<option>'.$s['name'].'</option>';
+     }
+    echo '</select>';
+}
+else 
+{
+    echo 'Сотрудники отсутствуют';
+}
+?>
+	 
      Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
   <input type="submit" name="ok" value="Внести запись"></p>
 </form>
@@ -73,6 +102,30 @@ $link = mysql_connect("localhost", "root", "") or die("Не соединилос
     }
 }
 ?>
+
+<form action="view_data.php" method="post" name="view_result">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Посмотреть ранее сохраненные данные" /></td>
+ </tr>
+</table>
+</form>
+ 
+<form action="del_data.php" method="post" name="delete_data">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Удаление данных" /></td>
+ </tr>
+</table>
+</form>
+ 
+<form action="update_data.php" method="post" name="update_data">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Редактирование и обновление данных" /></td>
+ </tr>
+</table>
+</form>
   </p> 
   
   </div> 
@@ -180,6 +233,7 @@ $(function() {
 	$("ul.tabs").tabs("div.panes > div");
 });
 </script> 
+
 
 </body>
 </html>
