@@ -52,12 +52,13 @@ td { padding: 3px; text-align: center; vertical-align: middle; }
  
 <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
  <tr style=\"border: solid 1px #000\">
-  <td><b>#</b></td>
-  <td align=\"center\"><b>Дата обращения</b></td>
-  <td align=\"center\"><b>Имена пользователей</b></td>
-  <td align=\"center\"><b>E-Mail пользователей</b></td>
-  <td align=\"center\"><b>Тема сообщения</b></td>
-  <td align=\"center\"><b>Сообщения пользователей</b></td>
+  <td><b>Фамилия</b></td>
+  <td align=\"center\"><b>Имя</b></td>
+  <td align=\"center\"><b>Пол</b></td>
+  <td align=\"center\"><b>Отель</b></td>
+  <td align=\"center\"><b>Номер комнаты</b></td>
+  <td align=\"center\"><b>Дата продажи</b></td>
+  <td align=\"center\"><b>Цена</b></td>
  </tr>
 ");
 
@@ -79,6 +80,6 @@ echo ("</table>\n");
 mysql_close();
  
 /* Выводим ссылку возврата */
-echo ("<div style=\"text-align: center; margin-top: 10px;\"><a href=\"index.html\">Вернуться назад</a></div>");
+echo ("<div style=\"text-align: center; margin-top: 10px;\"><a href=\"index5.php\">Вернуться назад</a></div>");
  
 ?>
