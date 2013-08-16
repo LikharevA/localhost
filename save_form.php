@@ -8,7 +8,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <title>JQF1 - Jquery FormOne - Form Style Plugin</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8\" />
 <meta name="description" content="JQF1 - Jquery FormOne - Form Style Plugin" />
 <meta name="keywords" content="jqf1, jqury, form, formon, style, styling, estlizacao, estilo, formulario, css, javacript" />
 <meta name="resource-type" content="document" />

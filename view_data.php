@@ -1,68 +1,67 @@
 <?
  
-/* Соединяемся с базой данных */
-$hostname = "localhost"; // название/путь сервера, с MySQL
-$username = "root"; // имя пользователя (в Denwer`е по умолчанию "root")
-$password = ""; // пароль пользователя (в Denwer`е по умолчанию пароль отсутствует, этот параметр можно оставить пустым)
-$dbName = "ex_bd"; // название базы данных
+/* РЎРѕРµРґРёРЅСЏРµРјСЃСЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С… */
+$hostname = "localhost"; // РЅР°Р·РІР°РЅРёРµ/РїСѓС‚СЊ СЃРµСЂРІРµСЂР°, СЃ MySQL
+$username = "root"; // РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РІ Denwer`Рµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ "root")
+$password = ""; // РїР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РІ Denwer`Рµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РїР°СЂРѕР»СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚, СЌС‚РѕС‚ РїР°СЂР°РјРµС‚СЂ РјРѕР¶РЅРѕ РѕСЃС‚Р°РІРёС‚СЊ РїСѓСЃС‚С‹Рј)
+$dbName = "ex_bd"; // РЅР°Р·РІР°РЅРёРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
  
-/* Таблица MySQL, в которой хранятся данные */
+/* РўР°Р±Р»РёС†Р° MySQL, РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅСЏС‚СЃСЏ РґР°РЅРЅС‹Рµ */
 $table = "usert";
  
-/* Создаем соединение */
-mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
+/* РЎРѕР·РґР°РµРј СЃРѕРµРґРёРЅРµРЅРёРµ */
+mysql_connect($hostname, $username, $password) or die ("РќРµ РјРѕРіСѓ СЃРѕР·РґР°С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ");
  
-/* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+/* Р’С‹Р±РёСЂР°РµРј Р±Р°Р·Сѓ РґР°РЅРЅС‹С…. Р•СЃР»Рё РїСЂРѕРёР·РѕР№РґРµС‚ РѕС€РёР±РєР° - РІС‹РІРµСЃС‚Рё РµРµ */
 mysql_select_db($dbName) or die (mysql_error());
  
-/* Составляем запрос для извлечения данных из полей "name", "email", "theme",
+/* РЎРѕСЃС‚Р°РІР»СЏРµРј Р·Р°РїСЂРѕСЃ РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ РґР°РЅРЅС‹С… РёР· РїРѕР»РµР№ "name", "email", "theme",
 f_name, l_name, gender, price, numroom, hotel, datesale;
-"message", "data" таблицы "test_table" */
+"message", "data" С‚Р°Р±Р»РёС†С‹ "test_table" */
 $query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale FROM $table";
  
-/* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+/* Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃ. Р•СЃР»Рё РїСЂРѕРёР·РѕР№РґРµС‚ РѕС€РёР±РєР° - РІС‹РІРµСЃС‚Рё РµРµ. */
 $res = mysql_query($query) or die(mysql_error());
  
-/* Выводим данные из таблицы */
+/* Р’С‹РІРѕРґРёРј РґР°РЅРЅС‹Рµ РёР· С‚Р°Р±Р»РёС†С‹ */
 echo ("
-<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
-<html xmlns=\"http://www.w3.org/1999/xhtml\">
- 
+<!DOCTYPE html>
+<html>
 <head>
+  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
  
-    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1251\" />
- 
-    <title>Вывод данных из MySQL</title>
+    <title>Р’С‹РІРѕРґ РґР°РЅРЅС‹С… РёР· MySQL</title>
  
 <style type=\"text/css\">
 <!--
-body { font: 12px Georgia; color: #666666; }
+body { font: 14px Georgia; color: #666666; }
 h3 { font-size: 16px; text-align: center; }
-table { width: 700px; border-collapse: collapse; margin: 0px auto; background: #E6E6E6; }
+table { width: 700px; border-collapse: collapse; margin: 0px auto; background: #E7E6E7; }
 td { padding: 3px; text-align: center; vertical-align: middle; }
-.buttons { width: auto; border: double 1px #666666; background: #D6D6D6; }
+.buttons { width: auto; border: double 1px #666666; background: #D7D6D6; }
 -->
 </style>
- 
+
+  
 </head>
  
 <body>
  
-<h3>Вывод ранее сохраненных данных из таблицы MySQL</h3>
+<h3>Р’С‹РІРѕРґ СЂР°РЅРµРµ СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РґР°РЅРЅС‹С… РёР· С‚Р°Р±Р»РёС†С‹ MySQL</h3>
  
 <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
  <tr style=\"border: solid 1px #000\">
-  <td><b>Фамилия</b></td>
-  <td align=\"center\"><b>Имя</b></td>
-  <td align=\"center\"><b>Пол</b></td>
-  <td align=\"center\"><b>Отель</b></td>
-  <td align=\"center\"><b>Номер комнаты</b></td>
-  <td align=\"center\"><b>Дата продажи</b></td>
-  <td align=\"center\"><b>Цена</b></td>
+  <td><b>Р¤Р°РјРёР»РёСЏ</b></td>
+  <td align=\"center\"><b>РРјСЏ</b></td>
+  <td align=\"center\"><b>РџРѕР»</b></td>
+  <td align=\"center\"><b>РћС‚РµР»СЊ</b></td>
+  <td align=\"center\"><b>РќРѕРјРµСЂ РєРѕРјРЅР°С‚С‹</b></td>
+  <td align=\"center\"><b>Р”Р°С‚Р° РїСЂРѕРґР°Р¶Рё</b></td>
+  <td align=\"center\"><b>Р¦РµРЅР°</b></td>
  </tr>
 ");
 
-/* Цикл вывода данных из базы конкретных полей */
+/* Р¦РёРєР» РІС‹РІРѕРґР° РґР°РЅРЅС‹С… РёР· Р±Р°Р·С‹ РєРѕРЅРєСЂРµС‚РЅС‹С… РїРѕР»РµР№ */
 while ($row = mysql_fetch_array($res)) {
     echo "<tr>\n";
     echo "<td>".$row['f_name']."</td>\n";
@@ -76,10 +75,10 @@ while ($row = mysql_fetch_array($res)) {
  
 echo ("</table>\n");
  
-/* Закрываем соединение */
+/* Р—Р°РєСЂС‹РІР°РµРј СЃРѕРµРґРёРЅРµРЅРёРµ */
 mysql_close();
  
-/* Выводим ссылку возврата */
-echo ("<div style=\"text-align: center; margin-top: 10px;\"><a href=\"index5.php\">Вернуться назад</a></div>");
+/* Р’С‹РІРѕРґРёРј СЃСЃС‹Р»РєСѓ РІРѕР·РІСЂР°С‚Р° */
+echo ("<div style=\"text-align: center; margin-top: 10px;\"><a href=\"index5.php\">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a></div>");
  
 ?>

@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>WR-Calendar - php скрипт календаря на месяц в "русском формате"</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta http-equiv="Content-Language" content="ru">
+<META name="description" content="Описание скрипта календаря на PHP. WR-Calendar - скрипт календаря.">
+<META name="keywords" content="WR-Calendar, скрипт календаря, PHP, Описание">
+<meta name="Resource-type" content="document">
+<meta name="Robots" content="index,follow">
+<style>
+body { background-color: #FFF; margin: 0px; padding: 0px; }
+body { scrollbar-arrow-color: #3B88C5; scrollbar-face-color: #FFFFFF; scrollbar-track-color: #E0E0E0; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #C0C0C0; scrollbar-shadow-color: #FFFFFF; scrollbar-darkshadow-color: #B0B0B0; }
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+a { text-decoration: underline; color: #3B88C5; }
+a:visited { text-decoration: underline; color: #3279B2; }
+a:hover, a:active { text-decoration: underline; color: #FF9C00; }
+hr { height: 0px; border: solid #3888C7 0px; border-top-width: 1px;}
+td.row2 { background-color: #FFF; }
+table.forumline { background-color: #C0C0C0; }
+table.forumline:hover { background-color: #B0B0B0; }
+</style>
+</head>
+
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+
+<table width=80% cellspacing=0 cellpadding=10 align=center>
+<tr><td class=bodyline>
+
+<table width=100% cellspacing=0 cellpadding=0>
+<tr>
+<td align="center" width="100%" valign="middle"><span class="maintitle"><h3>WR-Calendar &copy; версия 1.0</h3></span>
+</td></tr></table>
+<table width=100% cellpadding=4 cellspacing=2 class=forumline>
+
+<tr><th width=100% colspan=2 class=thCornerL height=25 nowrap=nowrap><font color=#FFFFFF>:: <b>Назначение скрипта</b> ::</font></th></tr>
+
+<tr><td width=100% class=row2 valign=middle>
+Скрипт показывает <B>календарик на текущий месяц</B>, подсвечивая текущую дату.
+Единственная причина, побудившая меня написать такой скрипт - отсутствие в инете простых <B>календарей в вертикальном формате.</B><BR>
+Календарик компактен - занимает совсем немного места - <B>2 048 байт</B> :-)
+<BR>
+
+
+
+</td></tr>
+
+
+
+<tr><th width=100% colspan=2class=thCornerL height=25 nowrap=nowrap><font color=#FFFFFF>:: <b>Возможности</b> ::</font></th></tr>
+
+<tr><td width=100% class=row2 valign=middle>
+&nbsp;&nbsp;&nbsp; - имеется возможность легко <B>изменить цвет подсветки сегодняшней даты</B> - переменная <B>$hcolor="#884422";</B><BR>
+&nbsp;&nbsp;&nbsp; - можно изменить <B>цвет бордюра таблицы</B> - переменная <B>$bcolor="#cccccc";</B><BR>
+&nbsp;&nbsp;&nbsp; - есть возможность <B>включить/отключить печать шапки со стилями</B> (если вы хотите использовать свои настройки на странице - то присвойте "0" этой переменной): <B>$printshapka="0";</B>
+<BR>
+</td></tr>
+
+
+<tr><th width=100% colspan=2 class=thCornerL height=25 nowrap=nowrap><font color=#FFFFFF>:: <b>Установка и использование</b> ::</font></th></tr>
+
+<tr><td width=100% class=row2 valign=middle>
+1. Закачайте в любую папку вашего сайта файлы <B>calendar.php</B> и <B>calendarjs.php</B> Выставите им атрибуты Chmod <B><font color="FF0000">755</b></font>.<BR>
+2. Попытайтесь запустить скрипт ссылкой такого типа: <B>http://Мой_сайт/папка_где_лежит_скрипт_на_сервере/calendar.php</B><BR>
+Если Вы видите календарь на месяц - значит скрипт успешно работает и можно переходить к использованию.
+3. Скрипт calendarjs.php можно запускать с html-странички. Для этого необходимо вставить на Вашу html-страницу следующий код:
+<font color=red><B>&lt;script language="JavaScript" src="calendarjs.php"></script></B></font><BR>
+4. При проблемах с запуском скрипта убедитесь, что Вы установили <B>права доступа чтения/выполнения</B> для папки в которой расположен скрипт.
+Если скрипт не заработал, не бойтесь экспериментировать: изменяйте атрибуты файла. <B>На "сомнительном" хостинге, скрипт может запускаться с атрибутами 777</B> (вместо 755).<BR>
+5. На Вашей php-страничке добавьте строчку с кодом: <B><font color="FF0000">include "calendar.php";</font></B> в том месте, где Вам нужен календарь. И будет Вам счастье ;-) А вот на html-страничку инклюдить этот скрипт нельзя.
+<hr color=#224488 size=-1 width=100%>
+P.S. Внимание! Скрипт написан на PHP и не работает на бесплатном хостинге НЕ поддерживающего эту язык, например, www.narod.ru.
+<BR>Если все пункты вы выполнили, а скрипт так и не запустился, ну чтож, 
+заходите на форум по адресу: <a href="http://wr.kovostok.ru/wr-forum/index.php"><B>http://wr.kovostok.ru/wr-forum/index.php</B></a>
+и в разделе <B>"WR-Scripts"</B> просмотрите темы, возможно решение Вашей проблемы уже есть на форуме. Если нет - задавайте вопросы. Постараюсь Вам помочь.
+</td></tr>
+
+
+<tr><th width=100% colspan=2 class=thCornerL height=25 nowrap=nowrap><font color=#FFFFFF>:: <b>Лицензия</b> ::</font></th></tr>
+
+<tr><td width=100% class=row2 valign=middle>
+Пользуйтесь <B>WR-Calendar &copy; абсолютно бесплатно!</B><BR>
+Буду признателен, если Вы где-либо на своём сайте разместите ссылку на мой сайт.<BR>
+<B>WR-Calendar</B> распространяется по принципу "as is" (<B>"как есть"</B>).
+Это означает, что вы пользуетесь продуктом на свой риск. Автор не дает никаких гарантий и не несет никакой ответственности за возможный ущерб и убытки любого рода.
+</td></tr>
+
+
+</table>
+
+
+
+
+<center><font size=-2><small>Powered by <a href="http://wr.kovostok.ru" target="_blank" class="copyright">WR-Calendar</a> &copy; версия 1.0<br /></font>
+
+<font size=3><pre>
+##############################################
+# Разработчик скрипта: WR (Gavrilov Mikhail) #
+# Имя скрипта: WR-Calendar                   #
+# Версия скрипта: 1.0                        #
+# Статус: Бесплатный скрипт                  #
+# Требования: PHP 4.1.0                      #
+# Дата разработки: 21 ноября 2005 года       #
+# Страница: http://wr.kovostok.ru/           #
+# E-mail:   Miha-ingener@yandex.ru           #
+##############################################
+</pre>
+
+</body>
+</html>

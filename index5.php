@@ -106,14 +106,88 @@ $link = mysql_connect("localhost", "root", "") or die("Не соединилос
   <td align="center"><input type="submit" class="buttons" value="Редактирование и обновление данных" /></td>
  </tr>
 </table>
-</form>
+
+<?php
+
+function calendar(){
+$td1 = "<td align='right' class='color_bg'?>";
+$td2 = "<td align='right' class='color_bg_today'?>";
+$day = date ('j',time ());
+$mon = date ('n',time ());
+$year = date ('Y',time ());
+$dim = date ('t',time ());
+$frst_day = date('w',mktime(1,0,0,$mon,1,$year))-1;
+if ($frst_day=='-1'){ $frst_day='6'; }
+$mon_str=array('Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь');
+$mon1=$mon-1;
+$rez = "<table align='left' border='0' cellpadding='0' cellspacing='0' class='color_bg_tbl'?>
+<tr?>
+<td?>
+<table border='0' cellspacing='1' cellpadding='2' width='100%'?>
+<tr?>
+<td align='center' colspan='7' class='color_bg_td'?> 
+<font class='now'?>
+<b?>" .$mon_str[$mon1] ." " .$year ."</b?></font?></td?>\n
+</tr?>
+<tr?>
+<td align='center' class='color_bg'?>Пн</td?>
+<td align='center' class='color_bg'?>Вт</td?>
+<td align='center' class='color_bg'?>Ср</td?>
+<td align='center' class='color_bg'?>Чт</td?>
+<td align='center' class='color_bg'?>Пт</td?>
+<td align='center' class='color_bg'?>Сб</td?>
+<td align='center' class='color_bg'?><font color=red?>Вс</font?></td?>
+</tr?>\n";
+for( $i = 1; $i <= $dim+$frst_day; $i++)
+ {
+if($i==$day+$frst_day) $td=$td2; else $td=$td1;
+ if($dw==0)
+  {$dw='7';}
+ $dw = $dw-1;
+ $dm = $i- $frst_day;
+ if($frst_day > $i or $dm<1)
+  {$rez .= $td."\n  </td?>\n";}
+ elseif($frst_day == $i)
+  {$rez .= $td."\n".$dm."</td?>\n"; }
+ elseif($i=='7' or $i=='14' or $i=='21' or $i=='28' or $i=='35')
+  {
+  $rez .= $td." <font color=red?>".$dm."</font?> </td?>\n</tr?>\n<tr?>\n";
+  }
+ else{$rez .= $td." ".$dm."\n</td?>\n";}
+ }
+if($dw!=0)
+ {  
+ for( $i = 0; $i < $dw; $i++)
+  { $rez .= $td."\n  </td?>\n";}
+ }
+$rez .= "</tr?>\n
+</table?>\n</td?>\n</tr?>\n</table?>\n"; 
+return $rez;
+} 
+
+print calendar();
+
+?> 
+ 
+
+
   </p> 
   
   </div> 
   
+
   <div class="les"><h2>Вторая вкладка.</h2> 
   <p> 
 
+ 
+
+
+
+
+
+     
+ 
+  
 <?
   $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
  
