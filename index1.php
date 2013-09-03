@@ -179,7 +179,7 @@ $result = mysql_query($query) or die("Запрос ошибочный");
 	</script>
 	<div>
 	<ul class="ul">
-	<li><label for="cal-number">Дата:</li></label><li>
+	<li><label for="cal-number">2Дата:</li></label><li>
     <input class="tcal tcalInput tcalActive" type="text" name="date1">
     </div>
 	

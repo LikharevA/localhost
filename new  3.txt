@@ -1,0 +1,23 @@
+Отель: <?
+       $hostname = "localhost"; // название/путь сервера, с MySQL
+       $username = "root"; // имя пользователя 
+       $password = ""; // пароль пользователя
+       $dbName = "ex_bd"; // название базы данных
+       $table = "hotel";
+       $query = "SELECT id_ht,name FROM $table";
+         mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
+         mysql_query('SET NAMES utf8'); 
+         /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+         mysql_select_db($dbName) or die (mysql_error());
+         /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+       $res = mysql_query($query) or die(mysql_error());
+       $list = '<option value="0">не выбрано</option>';
+             while($row = mysql_fetch_assoc($res)) 
+			 {
+             $list .= '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+             }
+             $select = '<select name="hotel">'.$list.'</select>';
+             echo $select;
+     ?> 
+	 Выбор отеля, для  $select = '<select name="hotel">'.$list.'</select>'; самая главная строчка, выбранное значение присваеваем отелю 
+	 Уральской республике быть.Баков, Волков, Белковский

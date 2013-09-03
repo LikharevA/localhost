@@ -54,7 +54,7 @@ Protoplasm.use('datepicker')
 -->
 <!--календарик -->
 <ul class="ul">
-<li><label for="selSearch">Регион:</label></li>
+<li><label for="selSearch">1Регион:</label></li>
 <li>
 <select name="selSearch" id="selSearch" search="ok" style="width:200px;" openheight="150">
 <option value="01">Pattay</option>
@@ -94,13 +94,13 @@ $(document).ready(function(){
 	</script>
 	<div>
 	<ul class="ul">
-	<li><label for="cal-number">Дата:</li></label><li>
+	<li><label for="cal-number">1Дата:</li></label><li>
     <input class="tcal tcalInput tcalActive" type="text" name="date1">
     </div>
 	<form action="#">
 		<div>
 		<ul class="ul">
-<li><label for="cal-number">Дата:</li></label><li>
+       <li><label for="cal-number">Дата:</li></label><li>
 			<select id="cal-number" onchange="f_createCalendars(this.options[this.selectedIndex].value)">
 				<option value="0">none</option>
 				<option value="1">1</option>
