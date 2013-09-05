@@ -51,8 +51,15 @@ $cdate = date("Y-m-d");
 /* Составляем запрос для вставки информации в таблицу
 name...date - название конкретных полей в базе;
 в $_POST["test_name"]... $_POST["test_mess"] - в этих переменных содержатся данные, полученные из формы */
-$query = "INSERT INTO $table SET f_name='".$_POST['f_name']."', l_name='".$_POST["l_name"]."',
-gender='".$_POST["gender"]."',  price='".$_POST["price"]."', numroom='".$_POST["numroom"]."', hotel='".$_POST["hotel"]."', datesale='".$_POST["datesale"]."'";
+$query = "INSERT INTO $table SET 
+         f_name='".$_POST['f_name']."', 
+         l_name='".$_POST["l_name"]."',
+         gender='".$_POST["gender"]."',  
+         price='".$_POST["price"]."', 
+         numroom='".$_POST["numroom"]."', 
+         hotel='".$_POST["hotel"]."', 
+         id_ex='".$_POST["id_ex"]."', 
+         datesale='".$_POST["datesale"]."'";
 
 /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 mysql_query($query) or die(mysql_error());

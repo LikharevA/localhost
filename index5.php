@@ -24,6 +24,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src='jquery.js' type='text/javascript'></script>
 <script src="js/bootstrap.min.js"></script>
+
+
+<!-- клон -->
+
+
+
+
+<!-- Клон -->
+
+
 <!-- Календарик -->
 <link rel="stylesheet" type="text/css" href="tcal.css" />
 <script type="text/javascript" src="tcal.js"></script> 
@@ -52,20 +62,24 @@
 	//]]>
 	</script>
 </head>
- <body>
+
+
+ 
+ 
+ 
+ 
 <ul class="tabs"> 
   <li><a href="#">1-ая вкладка</a></li> 
   <li><a href="#">2-ая вкладка</a></li> 
   
   </ul> 
-  
-  <!-- tab "panes" --> 
 <div class="panes"> 
   <div><h2>Первая вкладочка</h2> 
   <p> 
   <form action="save_form.php" method="post" name="test_form">
   <p> 
-     Регион: <select name="region">
+     Регион:<select name="region">
+	 
            <option>Pattay</option>
 		   <option>Phuket</option>
            <option>Samui</option></select><br>
@@ -76,13 +90,13 @@
            <option>f</option></select><br>
 	 <!-- Отель:  &nbsp;<input type="text" name="hotel"><br> -->
 	
-     Отель: <?
+     Отель: &nbsp;<?
        $hostname = "localhost"; // название/путь сервера, с MySQL
        $username = "root"; // имя пользователя 
        $password = ""; // пароль пользователя
        $dbName = "ex_bd"; // название базы данных
        $table = "hotel";
-       $query = "SELECT id_ht,name FROM $table";
+       $query = "SELECT id_ht,name,region FROM $table ";
          mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
          mysql_query('SET NAMES utf8'); 
          /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
@@ -96,13 +110,12 @@
              }
              $select = '<select name="hotel">'.$list.'</select>';
              echo $select;
-     ?> 
+                   ?> 
                                           <br>
 	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
      Дата: &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="datesale"><br>
      Стоимость: &nbsp;<input type="Text" name="price"><br>
-	 Экскурсия: &nbsp;
-	 <?
+	 Экскурсия: &nbsp;<?
        $hostname = "localhost"; // название/путь сервера, с MySQL
        $username = "root"; // имя пользователя 
        $password = ""; // пароль пользователя
@@ -118,7 +131,7 @@
        $list = '<option value="0">не выбрано</option>';
              while($row = mysql_fetch_assoc($res)) 
 			 {
-             $list .= '<option value="'.$row['id_ex'].'">'.$row['name'].'</option>';
+             $list .= '<option value="'.$row['name'].'">'.$row['name'].'</option>';
              }
              $select = '<select name="id_ex">'.$list.'</select>';
              echo $select;
@@ -126,6 +139,7 @@
      Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
      <input type="submit" name="ok" value="Внести запись"></p>
      </form>
+
      <?
   /*     $link = mysql_connect("localhost", "root", "") or die("Не соединилось!!!");
       mysql_query('SET NAMES utf8');
@@ -174,15 +188,10 @@
  </tr>
 </table>
 
- 
-
- 
-
-
   </p> 
   
   </div> 
-  
+ 
 
   <div class="les"><h2>Вторая вкладка.</h2> 
   <p> 
