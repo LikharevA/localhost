@@ -187,7 +187,14 @@
   <td align="center"><input type="submit" class="buttons" value="Редактирование и обновление данных" /></td>
  </tr>
 </table>
-
+</form>
+<form action="datatables.html" method="post" name="view_result">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Посмотреть список" /></td>
+ </tr>
+</table>
+</form>
   </p> 
   
   </div> 
@@ -196,6 +203,36 @@
   <div class="les"><h2>Вторая вкладка.</h2> 
   <p> 
 
+<div style="width:390px;">
+<?php
+$base = @file('autocomplete.dat');
+?>
+ <table id="example" class="display">
+	<thead>
+		<tr>
+			<th>Название</th>
+			<th>Область</th>
+			<th>Кол-во</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+for($i=0;$i<count($base);$i++){
+    $row_base = explode(':', $base[$i]);
+    $row_base[3] = trim($row_base[3]);
+    print '<tr><td>'.$row_base[1].'</td><td>'.$row_base[2].'</td><td>'.$row_base[3].'</td></tr>';
+}
+?>
+	</tbody>
+	<!--<tfoot>
+		<tr>
+			<th>Название</th>
+			<th>Область</th>
+			<th>Кол-во</th>
+		</tr>
+	</tfoot>-->
+</table>
+</div>
  
 <?
   $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';

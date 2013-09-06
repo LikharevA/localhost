@@ -231,6 +231,13 @@ $result = mysql_query($query) or die("Запрос ошибочный");
 
 /* Печать результатов в HTML */
 
+/*
+ * Example init
+ */
+$(document).ready(function(){
+    $('#example').dataTable();
+});
+
 print "<table>\n";
 
 while ($line = mysql_fetch_array($result, MYSQL_NUM)) {
