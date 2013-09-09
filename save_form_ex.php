@@ -54,7 +54,7 @@ name...date - название конкретных полей в базе;
 $query = "INSERT INTO $table SET 
          name='".$_POST['name']."', 
          dayin='".$_POST["dayin"]."',
-         days='".$_POST["days"]."',  
+         days='".$_POST['days']."',
          price='".$_POST["price"]."',         
          date_start='".$_POST["date_start"]."', 
          date_end='".$_POST["date_end"]."', 

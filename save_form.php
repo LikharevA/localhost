@@ -61,7 +61,8 @@ $query = "INSERT INTO $table SET
          id_ex='".$_POST["id_ex"]."', 
          adult='".$_POST["adult"]."',
 		 bchd='".$_POST["bchd"]."', 
-         schd='".$_POST["schd"]."', 
+         schd='".$_POST["schd"]."',
+         tel='".$_POST["tel"]."',		 
          infint='".$_POST["infint"]."', 
          descript='".$_POST["descript"]."', 
          datesale='".$_POST["datesale"]."'
@@ -100,7 +101,7 @@ mysql_select_db($dbName) or die (mysql_error());
 /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
 f_name, l_name, gender, price, numroom, hotel, datesale;
 "message", "data" таблицы "test_table" */
-$query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale, id_ex, adult, bchd, schd, infint, descript FROM $table ";
+$query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale, id_ex, adult, bchd, schd, infint, tel, descript FROM $table ";
  
 /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 $res = mysql_query($query) or die(mysql_error());
@@ -138,6 +139,7 @@ td { padding: 3px; text-align: center; vertical-align: middle; }
   <td align=\"center\"><b>Экскурсия</b></td>
   <td align=\"center\"><b>Цена</b></td>
   <td align=\"center\"><b>Adult</b></td>
+  <td align=\"center\"><b>Контактный телефон</b></td>
   <td align=\"center\"><b>Примечание</b></td>
   <td align=\"center\"><b>Пол</b></td>
  </tr>
@@ -157,6 +159,7 @@ while ($row = mysql_fetch_array($res)) {
 	echo "<td>".$row['id_ex']."</td>\n";
 	echo "<td>".$row['price']."</td>\n";
 	echo "<td>".$row['adult']."</td>\n";
+	echo "<td>".$row['tel']."</td>\n";
     echo "<td>".$row['descript']."</td>\n";
 	echo "<td>".$row['gender']."</td>\n";
 }

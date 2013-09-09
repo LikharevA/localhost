@@ -75,11 +75,17 @@
   <p>   
   <form action="save_form.php" method="post" name="test_form">
   <p> 
-     Регион:&nbsp;<select name="region">
+  
+<table>
+<tr>  
+    <td> Регион:&nbsp;<select name="region">
            <option>Pattay</option>
 		   <option>Phuket</option>
            <option>Samui</option></select>
-	 Экскурсия: &nbsp;<?
+    </td>
+	<td>
+	</td>
+	<td>Экскурсия: &nbsp;<?
        $hostname = "localhost"; // название/путь сервера, с MySQL
        $username = "root"; // имя пользователя 
        $password = ""; // пароль пользователя
@@ -100,19 +106,36 @@
              $select = '<select name="id_ex">'.$list.'</select>';
              echo $select;
      ?> 
-     Дата: &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="datesale"><br>	 
-     Фамилия: &nbsp;<input type="text" name="f_name">
-     Имя: &nbsp;<input type="text" name="l_name">
-     Adult: <select name="adult">
+	 </td>
+	 <td>
+	</td>
+     <td>Дата: &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="datesale">
+	 </td>
+	 <td>
+	</td>
+</tr>
+<tr>
+	 
+     <td>Фамилия: &nbsp;<input type="text" name="f_name">
+	 </td>
+	 <td>
+	</td>
+     <td>Имя: &nbsp;<input type="text" name="l_name">
+	 </td>
+	 <td>
+	</td>
+     <td>Adult: <select name="adult">
             <option>1</option>
 			<option>2</option>
 			<option>3</option>
             <option>4</option></select>
-     Пол: <select name="gender">
-           <option>m</option>
-           <option>f</option></select><br>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr>	
 
-     Отель: &nbsp;<?
+    <td>Отель: &nbsp;<?
        $hostname = "localhost"; // название/путь сервера, с MySQL
        $username = "root"; // имя пользователя 
        $password = ""; // пароль пользователя
@@ -132,31 +155,65 @@
              }
              $select = '<select name="hotel">'.$list.'</select>';
              echo $select;
-                   ?> 
-
-	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
-     
-     Стоимость: &nbsp;<input type="Text" name="price"><br>
-	 B.chd: <select name="bchd">
+                   ?>
+	</td>			   
+    <td>
+	</td>
+	<td>№ комнаты: &nbsp;<input type="text" name="numroom">
+	</td>
+	<td>
+	</td>
+	<td>Контактный телефон: &nbsp;<input type="text" name="tel">
+	</td>
+	<td>
+	</td>
+ </tr>
+ <tr>    
+     <td>B.chd: <select name="bchd">
 	        <option>0</option>
             <option>1</option>
 			<option>2</option>
 			<option>3</option>
             <option>4</option></select>
-	 S.chd: <select name="schd">
-            <option>0</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-            <option>4</option></select>           
-	 Infint: <select name="infint">
+	 </td>
+	 <td>
+	 </td>
+	 <td>S.chd: <select name="schd">
             <option>0</option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
             <option>4</option></select>
-            <br>
-     Примечание: &nbsp;<textarea rows="3" cols="160"name="descript"></textarea><br>
+	 </td>
+     <td>
+	 </td>	 
+	 <td>Infint: <select name="infint">
+            <option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+	 </td>
+	 <td>
+	 </td>
+ </tr>
+ <tr>        
+	 <td>Стоимость: &nbsp;<input type="Text" name="price">
+	 </td>
+	 <td>
+	 </td>
+     <td>Пол: <select name="gender">
+           <option>m</option>
+           <option>f</option></select>
+	 </td>
+	 <td>
+	 </td> 
+     <td>Примечание: &nbsp;<textarea rows="3" cols="160"name="descript"></textarea>
+	 </td>
+	 <td>
+	 </td>
+</tr>
+</table>	 
      <input type="submit" name="ok" value="Внести запись"></p>
      </form>
 
@@ -257,41 +314,21 @@
 		   <option>Phuket</option>
            <option>Samui</option></select>
 		   
-	 Экскурсия: &nbsp;<?
-       $hostname = "localhost"; // название/путь сервера, с MySQL
-       $username = "root"; // имя пользователя 
-       $password = ""; // пароль пользователя
-       $dbName = "ex_bd"; // название базы данных
-       $table = "excurtion_ed";
-       $query = "SELECT name FROM $table";
-         mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
-         mysql_query('SET NAMES utf8'); 
-         /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
-         mysql_select_db($dbName) or die (mysql_error());
-         /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
-       $res = mysql_query($query) or die(mysql_error());
-       $list = '<option value="0">не выбрано</option>';
-             while($row = mysql_fetch_assoc($res)) 
-			 {
-             $list .= '<option value="'.$row['name'].'">'.$row['name'].'</option>';
-             }
-             $select = '<select name="name">'.$list.'</select>';
-             echo $select;
-                       ?> 
+	 Экскурсия: &nbsp;<input type="text" name="name">
 	 <br>	
      Дата (с какого числа): &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="date_start">
      Дата (по какое число): &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="date_end"> 
      
 	 <form name="f" method="get" action="<?=$_SERVER['PHP_SELF']?>">
 
-     Дни недели: <select name="days" size="3" multiple>
-             <option value="days1">пн</option>
-             <option value="days2">вт</option>
-			 <option value="days3">ср</option>
-			 <option value="days4">чт</option>
-			 <option value="days5">пт</option>
-			 <option value="days6">сб</option>
-             <option value="days6">вс</option>
+     Дни недели: <select  name=days[] size=7 multiple>
+             <option value=1 selected>пн</option>
+             <option value=2 >вт</option>
+			 <option value=3 >ср</option>
+			 <option value=4 >чт</option>
+			 <option value=5 >пт</option>
+			 <option value=6 >сб</option>
+             <option value=7 >вс</option>
              </select>
               <p>
 

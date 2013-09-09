@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="bootton/jquery.dataTables.css" rel="stylesheet" media="screen">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 <title>JQF1 - Jquery FormOne - Form Style Plugin</title>
 <meta charset="utf-8">
 <meta name="description" content="JQF1 - Jquery FormOne - Form Style Plugin" />
@@ -28,7 +28,7 @@
 
 <script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="bootton/jquery.dataTables.css" />
 
 </head>
  
@@ -47,7 +47,7 @@
 
 <style>
 body {
-    font-family:verdana, sans-serif;color:#333;font-size:15px;
+    font-family:verdana, sans-serif;color:#234;font-size:15px;
 }
 
 .dataTables_wrapper {
@@ -61,10 +61,10 @@ body {
 	position: absolute;
 	top: 39px;
 	left: 50%;
-	width: 500px;
+	width: 400px;
 	margin-left: -260px;
 	padding: 20px;
-	background-color: #EFFFBD;
+	background-color: #FF0022;
 	border: 1px solid #E3FE57;
 	text-align: center;
 }
@@ -182,14 +182,26 @@ table.display td.center {
 			<th width="15%">First name</th>
 			<th width="15%">Last name</th>
 			<th width="25%">Hotel</th>
+			<th width="5%">Pax</th>
 			<th width="10%">ID_excurtion</th>
 			<th width="20%">Phon</th>
-			<th width="10%">№ room</th>
+			<th width="5%">№ room</th>
 		</tr>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="5" class="dataTables_empty">Loading data from server</td>
+			<td colspan="8" class="dataTables_empty">Loading data from server</td>
 		</tr>
 	</tbody>
 	<tfoot>
@@ -198,6 +210,7 @@ table.display td.center {
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Hotel</th>
+			<th>Pax</th>
 			<th>ID_excurtion</th>
 			<th>Phon</th>
 			<th>№ room</th>
@@ -205,9 +218,13 @@ table.display td.center {
 		</tr>
 	</tfoot>
 </table>
+<br>
+<br>
+<br>
 <?
+
 echo ("<div style=\"text-align: margin-top: 10px;\">
- <a href=\"index5.php\">Вернуться назад</a></div>");
+ <a href=\"index5.php\" class=\"buttons\">Вернуться назад</a></div>");
  ?>
 </div>
 
