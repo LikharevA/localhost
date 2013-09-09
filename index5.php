@@ -24,6 +24,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src='jquery.js' type='text/javascript'></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 
 
 <script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
@@ -62,14 +63,16 @@
 </head>
 
 <ul class="tabs"> 
-  <li><a href="#">1-ая вкладка</a></li> 
-  <li><a href="#">2-ая вкладка</a></li> 
+  <li><a href="#">Гости</a></li> 
+  <li><a href="#">Экскурсии</a></li>
+  <li><a href="#">Описание</a></li>  
   
   </ul> 
 <div class="panes"> 
   <div><h2>Первая</h2> 
   <p> 
-<p> 
+  <p>
+  <p>   
   <form action="save_form.php" method="post" name="test_form">
   <p> 
      Регион:&nbsp;<select name="region">
@@ -240,109 +243,89 @@
   </div> 
  
 
-  <div class="les"><h2>Вторая вкладка.</h2> 
+  <div class="les"><h2>Вторая</h2> 
   <p> 
 
-<div style="width:390px;">
+  <p> 
+  <p>
+  <p>   
+  <form action="save_form_ex.php" method="post" name="test_form">
+  <p align="justify">
+  
+     Регион:&nbsp;<select name="region">
+           <option>Pattay</option>
+		   <option>Phuket</option>
+           <option>Samui</option></select>
+		   
+	 Экскурсия: &nbsp;<?
+       $hostname = "localhost"; // название/путь сервера, с MySQL
+       $username = "root"; // имя пользователя 
+       $password = ""; // пароль пользователя
+       $dbName = "ex_bd"; // название базы данных
+       $table = "excurtion_ed";
+       $query = "SELECT name FROM $table";
+         mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
+         mysql_query('SET NAMES utf8'); 
+         /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+         mysql_select_db($dbName) or die (mysql_error());
+         /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+       $res = mysql_query($query) or die(mysql_error());
+       $list = '<option value="0">не выбрано</option>';
+             while($row = mysql_fetch_assoc($res)) 
+			 {
+             $list .= '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+             }
+             $select = '<select name="name">'.$list.'</select>';
+             echo $select;
+                       ?> 
+	 <br>	
+     Дата (с какого числа): &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="date_start">
+     Дата (по какое число): &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="date_end"> 
+     
+	 <form name="f" method="get" action="<?=$_SERVER['PHP_SELF']?>">
 
-	</tbody>
-	<!--<tfoot>
-		<tr>
-			<th>Название</th>
-			<th>Область</th>
-			<th>Кол-во</th>
-		</tr>
-	</tfoot>-->
-</table>
-</div>
- 
-<?
-  $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
- 
-if ($action == 'postResult')
-{
-$data1selected = $_POST['data1'];
-$data2selected = $_POST['data2'];
-$data8text = $_POST['data8'];
- 
- 
-    echo "<b>Данные с формы следующие:</b>";
-    if ($data1selected!='')
-    {   
-    echo '<br>Поле data1: '.$data1selected;
-    }
-    else
-    {echo '<br>Поле data1 пустое!';}
- 
-    if ($data2selected!='')
-    {   
-    
-    echo '<br>Поле data2: '.$data2selected;
-    }
-    else
-    {echo '<br>Поле data1 пустое!';}
- 
+     Дни недели: <select name="days" size="3" multiple>
+             <option value="days1">пн</option>
+             <option value="days2">вт</option>
+			 <option value="days3">ср</option>
+			 <option value="days4">чт</option>
+			 <option value="days5">пт</option>
+			 <option value="days6">сб</option>
+             <option value="days6">вс</option>
+             </select>
+              <p>
 
-    if ($data8text!='')
-    {   
-    
-    echo '<br>Поле data8: '.$data8text;
-    }
-    else
-    {echo '<br>Поле data8 пустое.';}    
- 
-    $htmlcode = <<<HERE
-Нажмите кнопку 'Подтвердить запрос'.<br>
-<input name='sendok1' type='submit' value='Подтвердить запрос'  onclick='infor.style.display="block"' />
-<div style='display:none;' id='infor'>Информация о запросе сохранена в базе данных.</div>
-HERE;
-    
-echo "<br><br>".$htmlcode;
-    exit;
-}
-?>
-<form action="save_form.php" method="post" name="test_form">
-    
- <b>Данные запроса</b><br>
-     Пол: <select name="gender">
-           <option>m</option>
-           <option>f</option></select><br>
+         <?
+  // 1-й вариант проверки факта нажатия кнопки:
+  // if (@$_GET['ok'])
+
+  // 2-й вариант проверки факта нажатия кнопки:
+     if (isSet($_GET['ok']))
+     {
+       if ( isSet($_GET['books']) )
+       // если выбран хотя бы один элемент списка
+       {
+          echo   "<i>Выбраны книги с кодами:</i><br>";
+
+          foreach ( $_GET['books'] as $v )
+              echo "$v<br>";
+       }
+       else
+          echo 'Ничего не выбрано<br>';
+     };
+          ?>	   
+
+	 Колличество дней: &nbsp;<select name="dayin">
+           <option>1</option>
+		   <option>2</option>
+           </select>
 	
+     
+     Стоимость: &nbsp;<input type="Text" name="price"><br>
 	
-     Adult: <select name="adult">
-            <option>1</option>
-			<option>2</option>
-			<option>3</option>
-            <option>4</option></select>
-            <br>
-     B.chd: <select name="bchd">
-	        <option>0</option>
-            <option>1</option>
-			<option>2</option>
-			<option>3</option>
-            <option>4</option></select>
-            <br>
-	 S.chd: <select name="schd">
-            <option>0</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-            <option>4</option></select>
-            <br>
-	 Infint: <select name="infint">
-            <option>0</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-            <option>4</option></select>
-            <br>
- </form> 
- 
-    <input type="submit" name="ok" value="Внести запись"></p>
+     Примечание: &nbsp;<textarea rows="4" cols="160"name="descr"></textarea><br>
+     <input type="submit" name="ok" value="Внести запись"></p>
      </form>
-
-	 
-	 
 <script type="text/javascript">
 
 	 $(document).ready(function() {
@@ -355,34 +338,17 @@ echo "<br><br>".$htmlcode;
 
 </script>
 	 
-     <?
+   
+
+
+<form action="view_data.php" method="post" name="view_result">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Посмотреть ранее сохраненные данные" /></td>
+ </tr>
+</table>
+</form>
  
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(trim($_POST['f_name']) and trim($_POST['l_name']) 
-	and trim($_POST['gender']) and trim($_POST['datesale']) and trim($_POST['price']) and trim($_POST['numroom']) and trim($_POST['id_ex'])
-	and trim($_POST['adult']) and trim($_POST['bchd']) and trim($_POST['schd']) and trim($_POST['infint']) and trim($_POST['descript']))
-	{
-        $f_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['f_name']))));
-        $l_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['l_name']))));
-        $gender=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['gender']))));
-        $datesale=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['datesale']))));
-        $price=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['price']))));
-        $numroom=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['numroom']))));
-		$id_ex=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['id_ex']))));
-		$adult=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['adult']))));
-		$bchd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['bchd']))));
-		$schd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['schd']))));
-		$infint=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['infint']))));
-		$descript=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['descript']))));
-        $query = "INSERT INTO ex_bd.usert (`f_name`, `l_name`, `gender`, `datesale`, `price`, `numroom`, 'id_ex', `adult`, `bchd`, `schd`, `infint`, 'descript') 
-		           VALUES ('$f_name', '$l_name', '$gender', '$datesale', '$price', '$numroom', '$id_ex', '$adult', '$bchd', '$schd', '$infint', '$descript')";
-		$result = mysql_query($query) or die ("Запрос ошибочный");
-    }
-}
-?>
-
-
-	
 <form action="del_data.php" method="post" name="delete_data">
 <table>
  <tr>
@@ -404,10 +370,10 @@ echo "<br><br>".$htmlcode;
   <td align="center"><input type="submit" class="buttons" value="Посмотреть список" /></td>
  </tr>
 </table>
-</form>	
+</form>
   </p> 
-  
   </div> 
+
   <div class="les"><h2>Третья вкладка.</h2> 
   <p>  
   Содержимое третьей вкладки.
