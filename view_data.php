@@ -66,7 +66,7 @@ mysql_select_db($dbName) or die (mysql_error());
 /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
 f_name, l_name, gender, price, numroom, hotel, datesale;
 "message", "data" таблицы "test_table" */
-$query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale FROM $table";
+$query = "SELECT f_name, l_name, gender, price, numroom, hotel, datesale, id_ex, adult, bchd, schd, infint, descript FROM $table ";
  
 /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 $res = mysql_query($query) or die(mysql_error());

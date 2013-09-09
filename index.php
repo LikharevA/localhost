@@ -9,7 +9,7 @@ echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://
 <body>
 <center>
 <br><br><br><div style=\"width: 600px;\"><span style=\"font-size: 32px; color: green; font-family: Arial, Verdana;\"></span>
-<br><br><br><span style=\"font-size: 18px; color: #333; font-family: Verdana, Arial;\">Вау! Он работает ;-)</span>
+<br><br><br><span style=\"font-size: 18px; color: #333; font-family: Verdana, Arial;\">1</span>
 <br><br><br><br><span style=\"font-size: 12px; color: #333; font-family: Verdana, Arial;\">Перед использованием программы ознакомьтесь с руководством пользователя!<br>(Меню - Дополнительно - Документация)</span></div>
 <a href=\"index1.php\">Щелкните тут</a>
 <a href=\"index2.php\">Щелкните тут</a>

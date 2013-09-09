@@ -26,10 +26,8 @@
 <script src="js/bootstrap.min.js"></script>
 
 
+<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 <!-- клон -->
-
-
-
 
 <!-- Клон -->
 
@@ -63,33 +61,54 @@
 	</script>
 </head>
 
-
- 
- 
- 
- 
 <ul class="tabs"> 
   <li><a href="#">1-ая вкладка</a></li> 
   <li><a href="#">2-ая вкладка</a></li> 
   
   </ul> 
 <div class="panes"> 
-  <div><h2>Первая вкладочка</h2> 
+  <div><h2>Первая</h2> 
   <p> 
+<p> 
   <form action="save_form.php" method="post" name="test_form">
   <p> 
-     Регион:<select name="region">
-	 
+     Регион:&nbsp;<select name="region">
            <option>Pattay</option>
 		   <option>Phuket</option>
-           <option>Samui</option></select><br>
-     Фамилия: &nbsp;<input type="text" name="f_name"><br>
-     Имя: &nbsp;<input type="text" name="l_name"><br>
-	 Пол: <select name="gender">
+           <option>Samui</option></select>
+	 Экскурсия: &nbsp;<?
+       $hostname = "localhost"; // название/путь сервера, с MySQL
+       $username = "root"; // имя пользователя 
+       $password = ""; // пароль пользователя
+       $dbName = "ex_bd"; // название базы данных
+       $table = "excurtion_ed";
+       $query = "SELECT id_ex,name FROM $table";
+         mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
+         mysql_query('SET NAMES utf8'); 
+         /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+         mysql_select_db($dbName) or die (mysql_error());
+         /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+       $res = mysql_query($query) or die(mysql_error());
+       $list = '<option value="0">не выбрано</option>';
+             while($row = mysql_fetch_assoc($res)) 
+			 {
+             $list .= '<option value="'.$row['id_ex'].'">'.$row['name'].'</option>';
+             }
+             $select = '<select name="id_ex">'.$list.'</select>';
+             echo $select;
+     ?> 
+     Дата: &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="datesale"><br>	 
+     Фамилия: &nbsp;<input type="text" name="f_name">
+     Имя: &nbsp;<input type="text" name="l_name">
+     Adult: <select name="adult">
+            <option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+     Пол: <select name="gender">
            <option>m</option>
            <option>f</option></select><br>
-	 <!-- Отель:  &nbsp;<input type="text" name="hotel"><br> -->
-	
+
      Отель: &nbsp;<?
        $hostname = "localhost"; // название/путь сервера, с MySQL
        $username = "root"; // имя пользователя 
@@ -111,35 +130,47 @@
              $select = '<select name="hotel">'.$list.'</select>';
              echo $select;
                    ?> 
-                                          <br>
+
 	 № комнаты: &nbsp;<input type="text" name="numroom"><br>
-     Дата: &nbsp;<input class="tcal tcalInput tcalActive" type="text" name="datesale"><br>
+     
      Стоимость: &nbsp;<input type="Text" name="price"><br>
-	 Экскурсия: &nbsp;<?
-       $hostname = "localhost"; // название/путь сервера, с MySQL
-       $username = "root"; // имя пользователя 
-       $password = ""; // пароль пользователя
-       $dbName = "ex_bd"; // название базы данных
-       $table = "excurtion_ed";
-       $query = "SELECT id_ex,name FROM $table";
-         mysql_connect($hostname, $username, $password) or die ("Не могу создать соединение");
-         mysql_query('SET NAMES utf8'); 
-         /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
-         mysql_select_db($dbName) or die (mysql_error());
-         /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
-       $res = mysql_query($query) or die(mysql_error());
-       $list = '<option value="0">не выбрано</option>';
-             while($row = mysql_fetch_assoc($res)) 
-			 {
-             $list .= '<option value="'.$row['name'].'">'.$row['name'].'</option>';
-             }
-             $select = '<select name="id_ex">'.$list.'</select>';
-             echo $select;
-     ?> <br>
-     Примечание: &nbsp;<textarea rows="3" cols="60"name="info"></textarea><br>
+	 B.chd: <select name="bchd">
+	        <option>0</option>
+            <option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+	 S.chd: <select name="schd">
+            <option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>           
+	 Infint: <select name="infint">
+            <option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+            <br>
+     Примечание: &nbsp;<textarea rows="3" cols="160"name="descript"></textarea><br>
      <input type="submit" name="ok" value="Внести запись"></p>
      </form>
 
+	 
+	 
+<script type="text/javascript">
+
+	 $(document).ready(function() {
+    $('#usert').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "server_processing.php"
+    } );
+} );
+
+</script>
+	 
      <?
   /*     $link = mysql_connect("localhost", "root", "") or die("Не соединилось!!!");
       mysql_query('SET NAMES utf8');
@@ -150,7 +181,9 @@
 /* добавляет запись */
 /*$result = mysql_query($query) or die("Запрос ошибочный");0*/
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(trim($_POST['f_name']) and trim($_POST['l_name']) and trim($_POST['gender']) and trim($_POST['datesale']) and trim($_POST['price']) and trim($_POST['numroom']) and trim($_POST['id_ex']))
+    if(trim($_POST['f_name']) and trim($_POST['l_name']) 
+	and trim($_POST['gender']) and trim($_POST['datesale']) and trim($_POST['price']) and trim($_POST['numroom']) and trim($_POST['id_ex'])
+	and trim($_POST['adult']) and trim($_POST['bchd']) and trim($_POST['schd']) and trim($_POST['infint']) and trim($_POST['descript']))
 	{
         $f_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['f_name']))));
         $l_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['l_name']))));
@@ -159,11 +192,18 @@
         $price=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['price']))));
         $numroom=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['numroom']))));
 		$id_ex=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['id_ex']))));
-        $query = "INSERT INTO ex_bd.usert (`f_name`, `l_name`, `gender`, `datesale`, `price`, `numroom`, 'id_ex') VALUES ('$f_name', '$l_name', '$gender', '$datesale', '$price', '$numroom', $id_ex)";
+		$adult=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['adult']))));
+		$bchd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['bchd']))));
+		$schd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['schd']))));
+		$infint=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['infint']))));
+		$descript=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['descript']))));
+        $query = "INSERT INTO ex_bd.usert (`f_name`, `l_name`, `gender`, `datesale`, `price`, `numroom`, 'id_ex', `adult`, `bchd`, `schd`, `infint`, 'descript') 
+		           VALUES ('$f_name', '$l_name', '$gender', '$datesale', '$price', '$numroom', '$id_ex', '$adult', '$bchd', '$schd', '$infint', '$descript')";
 		$result = mysql_query($query) or die ("Запрос ошибочный");
     }
 }
 ?>
+
 
 <form action="view_data.php" method="post" name="view_result">
 <table>
@@ -188,7 +228,7 @@
  </tr>
 </table>
 </form>
-<form action="datatables.html" method="post" name="view_result">
+<form action="datatables.php" method="post" name="view_result">
 <table>
  <tr>
   <td align="center"><input type="submit" class="buttons" value="Посмотреть список" /></td>
@@ -204,25 +244,7 @@
   <p> 
 
 <div style="width:390px;">
-<?php
-$base = @file('autocomplete.dat');
-?>
- <table id="example" class="display">
-	<thead>
-		<tr>
-			<th>Название</th>
-			<th>Область</th>
-			<th>Кол-во</th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-for($i=0;$i<count($base);$i++){
-    $row_base = explode(':', $base[$i]);
-    $row_base[3] = trim($row_base[3]);
-    print '<tr><td>'.$row_base[1].'</td><td>'.$row_base[2].'</td><td>'.$row_base[3].'</td></tr>';
-}
-?>
+
 	</tbody>
 	<!--<tfoot>
 		<tr>
@@ -279,30 +301,115 @@ echo "<br><br>".$htmlcode;
     exit;
 }
 ?>
-<form action="index.php" method="post">
+<form action="save_form.php" method="post" name="test_form">
     
  <b>Данные запроса</b><br>
-Дата1:      <select name="data1">
- <option>1</option>
-  <option>2</option></select>
-  <br>
-  Дата2:        <select name="data2">
- <option>1</option>
-  <option>2</option></select>
-  <br>
-  
+     Пол: <select name="gender">
+           <option>m</option>
+           <option>f</option></select><br>
+	
+	
+     Adult: <select name="adult">
+            <option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+            <br>
+     B.chd: <select name="bchd">
+	        <option>0</option>
+            <option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+            <br>
+	 S.chd: <select name="schd">
+            <option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+            <br>
+	 Infint: <select name="infint">
+            <option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+            <option>4</option></select>
+            <br>
+ </form> 
  
-<br><label for="data8">Дата8:</label> <input id="data8" name="data8" type = "text" > <br>
-  <input type="hidden" name="action" value="postResult" />
-       <br> <br><input name="sendzapros" type="submit" value="отправить">
-    
+    <input type="submit" name="ok" value="Внести запись"></p>
+     </form>
 
-	</form>
+	 
+	 
+<script type="text/javascript">
+
+	 $(document).ready(function() {
+    $('#usert').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "server_processing.php"
+    } );
+} );
+
+</script>
+	 
+     <?
+ 
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(trim($_POST['f_name']) and trim($_POST['l_name']) 
+	and trim($_POST['gender']) and trim($_POST['datesale']) and trim($_POST['price']) and trim($_POST['numroom']) and trim($_POST['id_ex'])
+	and trim($_POST['adult']) and trim($_POST['bchd']) and trim($_POST['schd']) and trim($_POST['infint']) and trim($_POST['descript']))
+	{
+        $f_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['f_name']))));
+        $l_name=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['l_name']))));
+        $gender=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['gender']))));
+        $datesale=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['datesale']))));
+        $price=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['price']))));
+        $numroom=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['numroom']))));
+		$id_ex=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['id_ex']))));
+		$adult=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['adult']))));
+		$bchd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['bchd']))));
+		$schd=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['schd']))));
+		$infint=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['infint']))));
+		$descript=strip_tags(htmlspecialchars(mysql_escape_string(trim($_POST['descript']))));
+        $query = "INSERT INTO ex_bd.usert (`f_name`, `l_name`, `gender`, `datesale`, `price`, `numroom`, 'id_ex', `adult`, `bchd`, `schd`, `infint`, 'descript') 
+		           VALUES ('$f_name', '$l_name', '$gender', '$datesale', '$price', '$numroom', '$id_ex', '$adult', '$bchd', '$schd', '$infint', '$descript')";
+		$result = mysql_query($query) or die ("Запрос ошибочный");
+    }
+}
+?>
+
+
+	
+<form action="del_data.php" method="post" name="delete_data">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Удаление данных" /></td>
+ </tr>
+</table>
+</form>
+ 
+<form action="update_data.php" method="post" name="update_data">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Редактирование и обновление данных" /></td>
+ </tr>
+</table>
+</form>
+<form action="datatables.php" method="post" name="view_result">
+<table>
+ <tr>
+  <td align="center"><input type="submit" class="buttons" value="Посмотреть список" /></td>
+ </tr>
+</table>
+</form>	
   </p> 
   
   </div> 
   <div class="les"><h2>Третья вкладка.</h2> 
-  <p> 
+  <p>  
   Содержимое третьей вкладки.
   </p> 
   
